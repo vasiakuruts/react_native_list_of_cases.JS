@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 //file in styles
 export const styles = StyleSheet.create({
   mainBlock: {
-    paddingTop: 60,
+    paddingTop: 45,
     height: 100,
     backgroundColor: "silver",
   },

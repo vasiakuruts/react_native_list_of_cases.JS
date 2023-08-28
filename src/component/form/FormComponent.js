@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import {
   View,
-  Text,
-  TouchableHighlight,
   Button,
   TextInput,
 } from "react-native";

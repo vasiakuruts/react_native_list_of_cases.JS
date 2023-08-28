@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { FlatList, StyleSheet, View, Text } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  View,
+  SafeAreaView,
+  Platform,
+  StatusBar,
+  ScrollView,
+} from "react-native";
 import HeaderComponent from "./src/component/header/HeaderComponent";
 import ListItemComponent from "./src/component/listItem/ListItemComponent";
 import FormComponent from "./src/component/form/FormComponent";
@@ -25,21 +33,29 @@ const App = () => {
     });
   };
   return (
-    <View style={styles.mainBlock}>
+    <SafeAreaView style={styles.AndroidSafeArea}>
       <HeaderComponent />
       <FormComponent addHandler={addHandler} />
-      <View>
-        <FlatList
-          data={listOfItems}
-          renderItem={({ item }) => (
-            <ListItemComponent deleteHendler={deleteHendler} el={item} />
-          )}
-          keyExtractor={(item) => item.key}
-        />
-      </View>
-    </View>
+      <ScrollView>
+        <View>
+          <FlatList
+            data={listOfItems}
+            renderItem={({ item }) => (
+              <ListItemComponent deleteHendler={deleteHendler} el={item} />
+            )}
+            keyExtractor={(item) => item.key}
+          />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  AndroidSafeArea: {
+    flex: 1,
+    backgroundColor: "white",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+  },
+});
 export default App;
